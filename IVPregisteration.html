@@ -376,7 +376,7 @@
                   <div class="row">
                     <div class="tp-schedule-btn">
                       <button class="tp-btn" id="submit-application">
-                        Submit Aplication
+                        <span id="submit-btn-text">Submit Aplication</span>
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -384,6 +384,7 @@
                             height="12"
                             viewBox="0 0 7 12"
                             fill="none"
+                            id="submit-btn-icon"
                           >
                             <path
                               d="M1 11L6 6L1 1"
@@ -669,65 +670,88 @@
         });
 
         $("#submit-application").on("click", function (e) {
-          e.preventDefault(); // Prevent default form submission
+          try {
+            e.preventDefault(); // Prevent default form submission
 
-          // Get the form inputs
-          const email = $("#email").val();
-          const firstName = $("#first_name").val();
-          const lastName = $("#last_name").val();
-          const phoneNumber = $("#phone_number").val();
-          const designation = $("#designation").val();
-          const fileInput = $("#cv")[0].files[0]; // Get the selected file
+            // Get the form inputs
+            const email = $("#email").val();
+            const firstName = $("#first_name").val();
+            const lastName = $("#last_name").val();
+            const phoneNumber = $("#phone_number").val();
+            const designation = $("#designation").val();
+            const fileInput = $("#cv")[0].files[0]; // Get the selected file
 
-          if (
-            !email ||
-            !firstName ||
-            !lastName ||
-            !phoneNumber ||
-            !designation
-          ) {
-            return toastr["warning"]("Please all the required fields");
-          }
+            if (
+              !email ||
+              !firstName ||
+              !lastName ||
+              !phoneNumber ||
+              !designation
+            ) {
+              return toastr["warning"]("Please all the required fields");
+            }
 
-          var formData = new FormData();
-          formData.append("email", email);
-          formData.append("first_name", firstName);
-          formData.append("last_name", lastName);
-          formData.append("phone_number", phoneNumber);
-          formData.append("designation", designation);
+            var formData = new FormData();
+            formData.append("email", email);
+            formData.append("first_name", firstName);
+            formData.append("last_name", lastName);
+            formData.append("phone_number", phoneNumber);
+            formData.append("designation", designation);
 
-          if (fileInput) {
-            formData.append("photo", fileInput); // Append the file if it's selected
-          }
+            if (fileInput) {
+              formData.append("photo", fileInput); // Append the file if it's selected
+            }
 
-          // Debug: Log the FormData content (check in DevTools console)
-          for (var pair of formData.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
-          }
+            // Debug: Log the FormData content (check in DevTools console)
+            for (var pair of formData.entries()) {
+              console.log(pair[0] + ", " + pair[1]);
+            }
 
-          $.ajax({
-            url: "https://tnedii-mock.betaon.in/api/ivp/register",
-            method: "POST",
-            processData: false,
-            mimeType: "multipart/form-data",
-            contentType: false,
-            data: formData,
-            success: function (response, textStatus, jqXHR) {
-              if (jqXHR.status == 201) {
+            $.ajax({
+              url: "https://tnedii-mock.betaon.in/api/ivp/register",
+              method: "POST",
+              processData: false,
+              mimeType: "multipart/form-data",
+              contentType: false,
+              data: formData,
+              beforeSend: () => {
+                $("#submit-btn-text").text("Submitting...");
+                $("#submit-btn-icon").hide();
+                $("#submit-application").attr("disabled", true);
+              },
+              success: (response, textStatus, jqXHR) => {
+                const responseJSON = JSON.parse(jqXHR.responseText);
+
                 return toastr.success(
-                  jqXHR?.responseText?.message ?? "Created successfully"
+                  responseJSON?.message ?? "Created successfully"
                 );
-              }
-              toastr.warning("The Email ID has already been taken.");
-            },
-            error: function (xhr, status, error) {
-              // toastr.error(
-              //   error?.message ?? "Something went wrong. Please try again later"]
-              // );
+              },
+              error: (xhr, status, error) => {
+                const responseJSON = JSON.parse(xhr.responseText);
 
-              toastr.warning("The Email ID has already been taken.");
-            },
-          });
+                if (!responseJSON?.errors || responseJSON?.errors.length == 0) {
+                  return toastr.warning(
+                    responseJSON.message ?? "The given data was invalid."
+                  );
+                }
+
+                for (const field in responseJSON.errors) {
+                  if (responseJSON?.errors.hasOwnProperty(field)) {
+                    responseJSON?.errors[field].forEach((errorMessage) => {
+                      toastr.warning(errorMessage);
+                    });
+                  }
+                }
+              },
+              complete: () => {
+                $("#submit-btn-text").text("Submit Aplication");
+                $("#submit-btn-icon").show();
+                $("#submit-application").attr("disabled", false);
+              },
+            });
+          } catch (err) {
+            console.log(err?.message ?? err);
+          }
         });
       });
     </script>
