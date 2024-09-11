@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\TNPSC-IT01\\Downloads\\EDII_02\\EDII_02\\html.hixstudio.net\\acadia-prev\\acadia\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\font-awesome-pro.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\css\\font-awesome-pro.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\js\\bootstrap-bundle.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\js\\bootstrap-bundle.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\swiper-bundle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\css\\swiper-bundle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\TNPSC-IT01\\Downloads\\EDII_02\\EDII_02\\html.hixstudio.net\\acadia-prev\\acadia\\index.html",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Users\\TNPSC-IT01\\Downloads\\EDII_02\\EDII_02\\html.hixstudio.net\\acadia-prev\\acadia\\index.html",
+              "ToolTip": "C:\\Users\\TNPSC-IT01\\Downloads\\EDII_02\\EDII_02\\html.hixstudio.net\\acadia-prev\\acadia\\index.html",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Users\\TNPSC-IT01\\Downloads\\EDII_02\\EDII_02\\html.hixstudio.net\\acadia-prev\\acadia\\index.html",
+              "ViewState": "AQIAAIcDAAAAAAAAAAAAAJwDAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-08-16T11:43:14.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "font-awesome-pro.css",
+              "DocumentMoniker": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\font-awesome-pro.css",
+              "RelativeDocumentMoniker": "assets\\css\\font-awesome-pro.css",
+              "ToolTip": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\font-awesome-pro.css",
+              "RelativeToolTip": "assets\\css\\font-awesome-pro.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAC3JAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-15T16:25:13.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "bootstrap-bundle.js",
+              "DocumentMoniker": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\js\\bootstrap-bundle.js",
+              "RelativeDocumentMoniker": "assets\\js\\bootstrap-bundle.js",
+              "ToolTip": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\js\\bootstrap-bundle.js",
+              "RelativeToolTip": "assets\\js\\bootstrap-bundle.js",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAswGoAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-08-15T16:24:05.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "swiper-bundle.css",
+              "DocumentMoniker": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\swiper-bundle.css",
+              "RelativeDocumentMoniker": "assets\\css\\swiper-bundle.css",
+              "ToolTip": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\swiper-bundle.css",
+              "RelativeToolTip": "assets\\css\\swiper-bundle.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAB1CwAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-15T15:56:53.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "main.css",
+              "DocumentMoniker": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\main.css",
+              "RelativeDocumentMoniker": "assets\\css\\main.css",
+              "ToolTip": "C:\\My Web Sites\\EDII01\\html.hixstudio.net\\acadia-prev\\acadia\\assets\\css\\main.css",
+              "RelativeToolTip": "assets\\css\\main.css",
+              "ViewState": "AQIAACUqAAAAAAAAAAAUwDQqAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-13T08:47:15.416Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
