@@ -376,7 +376,7 @@
                   <div class="row">
                     <div class="tp-schedule-btn">
                       <button class="tp-btn" id="submit-application">
-                        <span id="submit-btn-text">Submit Aplication</span>
+                        <span id="submit-btn-text">Submit Application</span>
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -656,6 +656,12 @@
           hideMethod: "fadeOut",
         };
 
+        // Utils
+        function reset() {
+          $("input").val("");
+          $("#cv").value = "";
+        }
+
         $(document).on("change", "#cv", (e) => {
           e.preventDefault(); // Prevent default form submission
 
@@ -702,11 +708,6 @@
               formData.append("photo", fileInput); // Append the file if it's selected
             }
 
-            // Debug: Log the FormData content (check in DevTools console)
-            for (var pair of formData.entries()) {
-              console.log(pair[0] + ", " + pair[1]);
-            }
-
             $.ajax({
               url: "https://tnedii-mock.betaon.in/api/ivp/register",
               method: "POST",
@@ -722,29 +723,41 @@
               success: (response, textStatus, jqXHR) => {
                 const responseJSON = JSON.parse(jqXHR.responseText);
 
-                return toastr.success(
-                  responseJSON?.message ?? "Created successfully"
+                reset();
+
+                $(".ajax-response").text(
+                  "IVP has been registered successfully"
                 );
+
+                return toastr.success("IVP has been registered successfully");
               },
               error: (xhr, status, error) => {
                 const responseJSON = JSON.parse(xhr.responseText);
 
                 if (!responseJSON?.errors || responseJSON?.errors.length == 0) {
+                  $(".ajax-response").text(
+                    responseJSON.message ?? "The given data was invalid."
+                  );
+
                   return toastr.warning(
                     responseJSON.message ?? "The given data was invalid."
                   );
                 }
 
+                let errorMessageList = "";
                 for (const field in responseJSON.errors) {
                   if (responseJSON?.errors.hasOwnProperty(field)) {
                     responseJSON?.errors[field].forEach((errorMessage) => {
+                      errorMessageList += errorMessage + " ";
                       toastr.warning(errorMessage);
                     });
                   }
                 }
+
+                $(".ajax-response").text(errorMessageList);
               },
               complete: () => {
-                $("#submit-btn-text").text("Submit Aplication");
+                $("#submit-btn-text").text("Submit Application");
                 $("#submit-btn-icon").show();
                 $("#submit-application").attr("disabled", false);
               },
