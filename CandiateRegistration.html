@@ -358,7 +358,7 @@
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Name</label>
-                        <input type="text" id="canditate_name" />
+                        <input type="text" id="candidate_name" />
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
@@ -524,7 +524,7 @@
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Contact No</label>
-                        <input type="text" id="contact_no" />
+                        <input type="text" id="contact_no" maxlength="10" />
                       </div>
                     </div>
                   </div>
@@ -948,12 +948,29 @@
 
           // Get the form inputs
           const email = $("#email").val();
-          const canditate_name = $("#canditate_name").val();
+          const candidate_name = $("#candidate_name").val();
+          const training_type = $("#training_type").val();
+          const contact_no = $("#contact_no").val();
           const fileInput = $("#cv")[0].files[0]; // Get the selected file
 
-          if (!email || !canditate_name) {
-            $(".ajax-response").text("Please all the required fields");
-            return toastr["warning"]("Please all the required fields");
+          if (!training_type) {
+            $(".ajax-response").text("Training type must not be empty");
+            return toastr["warning"]("Training type must not be empty");
+          }
+
+          if (!email) {
+            $(".ajax-response").text("Email address must not be empty");
+            return toastr["warning"]("Email address must not be empty");
+          }
+
+          if (!candidate_name) {
+            $(".ajax-response").text("Candidate name must not be empty");
+            return toastr["warning"]("Candidate name must not be empty");
+          }
+
+          if (!contact_no) {
+            $(".ajax-response").text("Contact No must not be empty");
+            return toastr["warning"]("Contact No must not be empty");
           }
 
           if (!$("#remeber").is(":checked")) {
@@ -964,8 +981,8 @@
           var formData = new FormData();
           // Append other form fields
           formData.append("email", email);
-          formData.append("name", canditate_name);
-          formData.append("training_type", $("#training_type").val());
+          formData.append("name", candidate_name);
+          formData.append("training_type", training_type);
           formData.append("candidate_type", $("#candidate_type").val());
           formData.append("prefix", $("#prefix").val());
           formData.append("care_of", $("#care_of").val());
@@ -982,7 +999,7 @@
           formData.append("address", $("#address").val());
           formData.append("district", $("#district").val());
           formData.append("pincode", $("#pincode").val());
-          formData.append("contact_no", $("#contact_no").val());
+          formData.append("contact_no", contact_no);
 
           if (fileInput) {
             formData.append("photo", fileInput); // Append the file if it's selected
@@ -1053,6 +1070,7 @@
         $("input").val("");
         $("select").val("").trigger("change");
         $("textarea").val("");
+        $("#remeber").prop("checked", false);
       }
     });
   </script>
