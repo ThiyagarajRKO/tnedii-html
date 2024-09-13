@@ -314,16 +314,7 @@
                       <div class="tp-contact-input schedule p-relative">
                         <label>Training Type</label>
                         <div class="tp-application-select">
-                          <select class="wide" id="training_titles">
-                            <!-- <option value="0">Select Training Type</option>
-                                                        <option value="Youtube">Youtube</option>
-                                                        <option value="Bakery">Bakery</option>
-                                                        <option value="Photography">Photography</option>
-                                                        <option value="Photography">Digital Marketing</option>
-                                                        <option value="Herbal">Herbal Cosmetics</option>
-                                                        <option value="Gold">Gold Aprisal</option>
-                                                        <option value="Industrial">Industrial Chemicals</option> -->
-                          </select>
+                          <select class="wide" id="training_type"></select>
                         </div>
                       </div>
                     </div>
@@ -332,7 +323,7 @@
                       <div class="tp-contact-input schedule p-relative">
                         <label>Canditate Type</label>
                         <div class="tp-application-select">
-                          <select class="wide" id="canditate_type">
+                          <select class="wide" id="candidate_type">
                             <option value="Employed">Employed</option>
                             <option value="Un-Employed">Un-Employed</option>
                             <option value="Startup">Startup</option>
@@ -345,7 +336,7 @@
                     <div class="col-xl-6 col-lg-6 pt-20">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Email address</label>
-                        <input type="email" />
+                        <input type="email" id="email" />
                       </div>
                     </div>
 
@@ -367,7 +358,7 @@
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Name</label>
-                        <input type="text" />
+                        <input type="text" id="canditate_name" />
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
@@ -385,7 +376,7 @@
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Father/Mother/Husband Name</label>
-                        <input type="text" />
+                        <input type="text" id="father_mother_husband_name" />
                       </div>
                     </div>
 
@@ -409,6 +400,7 @@
                           type="text"
                           id="datetime-picker"
                           placeholder="Choose Date"
+                          maxlength="10"
                         />
                         <span class="icon">
                           <svg
@@ -453,7 +445,7 @@
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Aadhaar No</label>
-                        <input type="text" />
+                        <input type="text" id="aadhaar_no" maxlength="12" />
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
@@ -514,7 +506,7 @@
                     <div class="col-lg-12">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Addess</label>
-                        <textarea></textarea>
+                        <textarea id="address"></textarea>
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
@@ -526,13 +518,13 @@
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Pincode</label>
-                        <input type="text" />
+                        <input type="text" id="pincode" />
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Contact No</label>
-                        <input type="text" />
+                        <input type="text" id="contact_no" />
                       </div>
                     </div>
                   </div>
@@ -549,8 +541,8 @@
                       </div>
                     </div>
                     <div class="tp-schedule-btn">
-                      <button class="tp-btn">
-                        Submit Application
+                      <button class="tp-btn" id="submit-application">
+                        <span id="submit-btn-text">Submit Application</span>
                         <span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -558,6 +550,7 @@
                             height="12"
                             viewBox="0 0 7 12"
                             fill="none"
+                            id="submit-btn-icon"
                           >
                             <path
                               d="M1 11L6 6L1 1"
@@ -820,7 +813,7 @@
   <script type="text/javascript">
     jQuery(document).ready(function ($) {
       // Dropdown initialization
-      $("#training_titles").select2({
+      $("#training_type").select2({
         placeholder: "Choose a Traning title",
         allowClear: true,
         ajax: {
@@ -843,7 +836,7 @@
             return {
               results: $.map(data?.rows, (item) => {
                 return {
-                  id: item.id,
+                  id: item.name,
                   text: item.name,
                 };
               }),
@@ -855,7 +848,7 @@
         },
       });
 
-      $("#canditate_type")
+      $("#candidate_type")
         .select2({
           placeholder: "Select Canditate Type",
           allowClear: true,
@@ -934,7 +927,7 @@
             return {
               results: $.map(data?.rows, (item) => {
                 return {
-                  id: item.id,
+                  id: item.name,
                   text: item.name,
                 };
               }),
@@ -945,6 +938,122 @@
           },
         },
       });
+
+      // Submit
+      $("#submit-application").on("click", function (e) {
+        try {
+          e.preventDefault(); // Prevent default form submission
+
+          $(".ajax-response").text("");
+
+          // Get the form inputs
+          const email = $("#email").val();
+          const canditate_name = $("#canditate_name").val();
+          const fileInput = $("#cv")[0].files[0]; // Get the selected file
+
+          if (!email || !canditate_name) {
+            $(".ajax-response").text("Please all the required fields");
+            return toastr["warning"]("Please all the required fields");
+          }
+
+          if (!$("#remeber").is(":checked")) {
+            $(".ajax-response").text("Please agree EDII privacy notice.");
+            return;
+          }
+
+          var formData = new FormData();
+          // Append other form fields
+          formData.append("email", email);
+          formData.append("name", canditate_name);
+          formData.append("training_type", $("#training_type").val());
+          formData.append("candidate_type", $("#candidate_type").val());
+          formData.append("prefix", $("#prefix").val());
+          formData.append("care_of", $("#care_of").val());
+          formData.append(
+            "father_mother_husband_name",
+            $("#father_mother_husband_name").val()
+          );
+          formData.append("gender", $("#gender").val());
+          formData.append("date_of_birth", $("#datetime-picker").val());
+          formData.append("aadhaar_no", $("#aadhaar_no").val());
+          formData.append("physically_challenged", $("#physical_status").val());
+          formData.append("community", $("#community").val());
+          formData.append("qualification", $("#qualification").val());
+          formData.append("address", $("#address").val());
+          formData.append("district", $("#district").val());
+          formData.append("pincode", $("#pincode").val());
+          formData.append("contact_no", $("#contact_no").val());
+
+          if (fileInput) {
+            formData.append("photo", fileInput); // Append the file if it's selected
+          }
+
+          $.ajax({
+            url: "https://tnedii-mock.betaon.in/api/training/applicants",
+            method: "POST",
+            processData: false,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            data: formData,
+            beforeSend: () => {
+              $("#submit-btn-text").text("Submitting...");
+              $("#submit-btn-icon").hide();
+              $("#submit-application").attr("disabled", true);
+            },
+            success: (response, textStatus, jqXHR) => {
+              const responseJSON = JSON.parse(jqXHR.responseText);
+
+              reset();
+
+              $(".ajax-response").text(
+                "Application has been submitted successfully"
+              );
+
+              return toastr.success(
+                "Application has been submitted successfully"
+              );
+            },
+            error: (xhr, status, error) => {
+              const responseJSON = JSON.parse(xhr.responseText);
+
+              if (!responseJSON?.errors || responseJSON?.errors.length == 0) {
+                $(".ajax-response").text(
+                  responseJSON.message ?? "The given data was invalid."
+                );
+
+                return toastr.warning(
+                  responseJSON.message ?? "The given data was invalid."
+                );
+              }
+
+              let errorMessageList = "";
+              for (const field in responseJSON.errors) {
+                if (responseJSON?.errors.hasOwnProperty(field)) {
+                  responseJSON?.errors[field].forEach((errorMessage) => {
+                    errorMessageList += errorMessage + " ";
+                    toastr.warning(errorMessage);
+                  });
+                }
+              }
+
+              $(".ajax-response").text(errorMessageList);
+            },
+            complete: () => {
+              $("#submit-btn-text").text("Submit Application");
+              $("#submit-btn-icon").show();
+              $("#submit-application").attr("disabled", false);
+            },
+          });
+        } catch (err) {
+          console.log(err?.message ?? err);
+        }
+      });
+
+      function reset() {
+        $("input").val("");
+        $("select").val("").trigger("change");
+        $("textarea").val("");
+      }
     });
   </script>
   <!-- Mirrored from html.hixstudio.net/EDII-prev/EDII/CandiateRegistration.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Aug 2024 06:53:08 GMT -->

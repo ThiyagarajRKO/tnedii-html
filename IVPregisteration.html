@@ -679,6 +679,8 @@
           try {
             e.preventDefault(); // Prevent default form submission
 
+            $(".ajax-response").text("");
+
             // Get the form inputs
             const email = $("#email").val();
             const firstName = $("#first_name").val();
@@ -694,6 +696,8 @@
               !phoneNumber ||
               !designation
             ) {
+              $(".ajax-response").text("Please all the required fields");
+
               return toastr["warning"]("Please all the required fields");
             }
 
