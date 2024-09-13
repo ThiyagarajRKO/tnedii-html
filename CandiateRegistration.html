@@ -1007,17 +1007,17 @@
             }
           }
 
-          if (!aadhar_no) {
-            $(".ajax-response").text("Aadhar No must not be empty");
-            return toastr["warning"]("Aadhar No must not be empty");
-          } else {
-            var aadharPattern = /^\d{12}$/;
+        //   if (!aadhar_no) {
+        //     $(".ajax-response").text("Aadhar No must not be empty");
+        //     return toastr["warning"]("Aadhar No must not be empty");
+        //   } else {
+        //     var aadharPattern = /^\d{12}$/;
 
-            if (!aadharPattern.test(aadhar_no)) {
-              $(".ajax-response").text("Invalid aadhar format.");
-              return;
-            }
-          }
+        //     if (!aadharPattern.test(aadhar_no)) {
+        //       $(".ajax-response").text("Invalid aadhar format.");
+        //       return;
+        //     }
+        //   }
 
           if (!contact_no) {
             $(".ajax-response").text("Contact No must not be empty");
