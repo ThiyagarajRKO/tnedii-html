@@ -951,6 +951,8 @@
           const candidate_name = $("#candidate_name").val();
           const training_type = $("#training_type").val();
           const contact_no = $("#contact_no").val();
+          const dob = $("#datetime-picker").val();
+          const aadhar_no = $("#aadhaar_no").val();
           const fileInput = $("#cv")[0].files[0]; // Get the selected file
 
           if (!training_type) {
@@ -961,11 +963,60 @@
           if (!email) {
             $(".ajax-response").text("Email address must not be empty");
             return toastr["warning"]("Email address must not be empty");
+          } else {
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+              $(".ajax-response").text("Invalid email address.");
+              return;
+            }
           }
 
           if (!candidate_name) {
             $(".ajax-response").text("Candidate name must not be empty");
             return toastr["warning"]("Candidate name must not be empty");
+          }
+
+          if (!dob) {
+            $(".ajax-response").text("Date of birth must not be empty");
+            return toastr["warning"]("Date of birth must not be empty");
+          } else {
+            var datePattern = /^\d{2}-\d{2}-\d{4}$/;
+
+            if (datePattern.test(dob)) {
+              var [day, month, year] = dob.split("-").map(Number);
+
+              // Optional: Further validation to ensure date is valid
+              if (
+                day >= 1 &&
+                day <= 31 &&
+                month >= 1 &&
+                month <= 12 &&
+                year >= 1000 &&
+                year <= 9999
+              ) {
+              } else {
+                $(".ajax-response").text("Invalid date.");
+                return;
+              }
+            } else {
+              $(".ajax-response").text(
+                "Invalid format. Please use dd-mm-yyyy."
+              );
+              return;
+            }
+          }
+
+          if (!aadhar_no) {
+            $(".ajax-response").text("Aadhar No must not be empty");
+            return toastr["warning"]("Aadhar No must not be empty");
+          } else {
+            var aadharPattern = /^\d{12}$/;
+
+            if (!aadharPattern.test(aadhar_no)) {
+              $(".ajax-response").text("Invalid aadhar format.");
+              return;
+            }
           }
 
           if (!contact_no) {
@@ -991,8 +1042,8 @@
             $("#father_mother_husband_name").val()
           );
           formData.append("gender", $("#gender").val());
-          formData.append("date_of_birth", $("#datetime-picker").val());
-          formData.append("aadhaar_no", $("#aadhaar_no").val());
+          formData.append("date_of_birth", new Date(dob));
+          formData.append("aadhaar_no", aadhar_no);
           formData.append("physically_challenged", $("#physical_status").val());
           formData.append("community", $("#community").val());
           formData.append("qualification", $("#qualification").val());
