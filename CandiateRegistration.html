@@ -491,7 +491,7 @@
                     <div class="col-xl-6 col-lg-6 pt-20">
                       <div class="tp-contact-input schedule p-relative">
                         <label>Upload Photo</label>
-                        <input type="text" />
+                        <input type="text" id="photo_name" />
                         <input id="cv" type="file" hidden="" />
                         <label class="hide" for="cv">
                           <span>Choose File</span>
@@ -1042,7 +1042,7 @@
             $("#father_mother_husband_name").val()
           );
           formData.append("gender", $("#gender").val());
-          formData.append("date_of_birth", new Date(dob));
+          formData.append("date_of_birth", dob);
           formData.append("aadhaar_no", aadhar_no);
           formData.append("physically_challenged", $("#physical_status").val());
           formData.append("community", $("#community").val());
@@ -1122,7 +1122,21 @@
         $("select").val("").trigger("change");
         $("textarea").val("");
         $("#remeber").prop("checked", false);
+        $("#cv").value = "";
       }
+
+      $(document).on("change", "#cv", (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        // Get the file input
+        const fileInput = $("#cv")[0];
+
+        if (fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+
+          $("#photo_name").val(file.name);
+        }
+      });
     });
   </script>
   <!-- Mirrored from html.hixstudio.net/EDII-prev/EDII/CandiateRegistration.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Aug 2024 06:53:08 GMT -->
